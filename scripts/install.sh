@@ -39,7 +39,7 @@ get_downloads_dir() {
 # Get latest version
 get_latest_version() {
     echo -e "${CYAN}ℹ️ Checking latest version...${NC}"
-    latest_release=$(curl -s https://api.github.com/repos/yeongpin/cursor-free-vip/releases/latest) || {
+    latest_release=$(curl -s https://api.github.com/repos/marcogourmet/cursor/releases/latest) || {
         echo -e "${RED}❌ Cannot get latest version information${NC}"
         exit 1
     }
@@ -83,11 +83,11 @@ detect_os() {
 }
 
 # Install and download
-install_cursor_free_vip() {
+install_cursor() {
     local downloads_dir=$(get_downloads_dir)
-    local binary_name="CursorFreeVIP_${VERSION}_${OS}"
+    local binary_name="Cursor_${VERSION}_${OS}"
     local binary_path="${downloads_dir}/${binary_name}"
-    local download_url="https://github.com/yeongpin/cursor-free-vip/releases/download/v${VERSION}/${binary_name}"
+    local download_url="https://github.com/marcogourmet/cursor/releases/download/v${VERSION}/${binary_name}"
     
     # Check if file already exists
     if [ -f "${binary_path}" ]; then
@@ -129,8 +129,8 @@ install_cursor_free_vip() {
         # Try without architecture
         if [[ "$OS" == "mac_arm64" || "$OS" == "mac_intel" ]]; then
             OS="mac"
-            binary_name="CursorFreeVIP_${VERSION}_${OS}"
-            download_url="https://github.com/yeongpin/cursor-free-vip/releases/download/v${VERSION}/${binary_name}"
+            binary_name="Cursor_${VERSION}_${OS}"
+            download_url="https://github.com/marcogourmet/cursor/releases/download/v${VERSION}/${binary_name}"
             echo -e "${CYAN}ℹ️ New download link: ${download_url}${NC}"
             
             if ! curl --output /dev/null --silent --head --fail "$download_url"; then
@@ -139,8 +139,8 @@ install_cursor_free_vip() {
             fi
         elif [[ "$OS" == "linux_x64" || "$OS" == "linux_arm64" ]]; then
             OS="linux"
-            binary_name="CursorFreeVIP_${VERSION}_${OS}"
-            download_url="https://github.com/yeongpin/cursor-free-vip/releases/download/v${VERSION}/${binary_name}"
+            binary_name="Cursor_${VERSION}_${OS}"
+            download_url="https://github.com/marcogourmet/cursor/releases/download/v${VERSION}/${binary_name}"
             echo -e "${CYAN}ℹ️ New download link: ${download_url}${NC}"
             
             if ! curl --output /dev/null --silent --head --fail "$download_url"; then
@@ -191,8 +191,8 @@ main() {
     print_logo
     get_latest_version
     detect_os
-    install_cursor_free_vip
+    install_cursor
 }
 
 # Run main program
-main 
+main
